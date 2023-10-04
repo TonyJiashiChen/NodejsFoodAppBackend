@@ -1,6 +1,7 @@
 import express from "express";
 import {AdminRoute, VendorRoute} from './routes'
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
 
 const app = express();
 
