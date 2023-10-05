@@ -37,7 +37,12 @@ export const CreateVendor = async (req: Request, res: Response, next: NextFuncti
 }
 
 export const GetVendor = async (req: Request, res: Response, next: NextFunction) => {
+    const vendors = await Vendor.find();
 
+    if (vendors !== null) {
+        return res.json(vendors)
+    }
+    return res.json({"message": "vendors} data not avaiable"})
 }
 
 export const GetVendorById = async (req: Request, res: Response, next: NextFunction) => {
