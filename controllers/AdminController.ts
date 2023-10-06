@@ -4,10 +4,19 @@ import { Vendor } from "../models";
 import { GenerateSalt, encryptPassword } from "../utility";
 
 
+export const findVendor = async (id: string | undefined, email?: string ) => {
+    if(email) {
+        const vendor = await Vendor.findOne({email: email}) 
+        return vendor;
+    } else {
+        return await Vendor.findById(id)
+    }
+}
+
 export const CreateVendor = async (req: Request, res: Response, next: NextFunction) => {
     const { name, address, pincode, foodType, email, password, ownerName, phone }  = <CreateVendorInput>req.body;
 
-    const existingVendor = await Vendor.findOne({email: email})
+    const existingVendor = await findVendor('', email)
 
     if(existingVendor !== null) {
         return res.json({"message": "a vendor existed with this email ID"})
@@ -46,4 +55,12 @@ export const GetVendor = async (req: Request, res: Response, next: NextFunction)
 }
 
 export const GetVendorById = async (req: Request, res: Response, next: NextFunction) => {
+    const vendorId = req.params.id;
+    const vendor = await findVendor(vendorId);
+
+    if (vendor !== null) {
+        return res.json(vendor);
+    }
+
+    return res.json({"message": "vendors} data not avaiable"})
 }
