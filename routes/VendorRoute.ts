@@ -1,9 +1,13 @@
 import express, { Request, Response, NextFunction } from 'express';
-import {VendorLogin} from '../controllers';
+import {VendorLogin, getVendorProfile, updateVendorProfile, updateVendorService} from '../controllers';
 
 const router = express.Router();
 
 router.post('/login', VendorLogin);
+
+router.get('/profile', getVendorProfile);
+router.patch('/profile', updateVendorProfile);
+router.patch('/service', updateVendorService);
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.json({message: "from vendor"})

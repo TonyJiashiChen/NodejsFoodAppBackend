@@ -19,3 +19,16 @@ export const VendorLogin = async (req: Request, res: Response, next: NextFunctio
 
     return res.json({"message": "Login credential is not valid"});
 }
+
+
+export const getVendorProfile = async (req: Request, res: Response, next: NextFunction) => {
+
+}
+
+export const updateVendorProfile = async (req: Request, res: Response, next: NextFunction) => {
+
+}
+export const updateVendorService = async (req: Request, res: Response, next: NextFunction) => {
+
+}
+
